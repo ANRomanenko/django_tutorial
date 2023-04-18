@@ -1,5 +1,5 @@
-from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.shortcuts import render, redirect
 
 
 def index(request): #HttpRequest
@@ -14,6 +14,8 @@ def categories(request, catid):
 
 
 def archive(request, year):
+    if int(year) > 2020:
+        return redirect('/', permanent=True) # Таким способом можно делать редирект 302 и 301
     return HttpResponse(f"<h1>Архив по годам</h1><p>{year}</p>")
 
 
