@@ -11,7 +11,7 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
 
 
 def index(request): #HttpRequest
-    posts = Women.objects.all()
+    posts = Women.objects.filter(is_published=True)
     cats = Category.objects.all()
 
     context = {
